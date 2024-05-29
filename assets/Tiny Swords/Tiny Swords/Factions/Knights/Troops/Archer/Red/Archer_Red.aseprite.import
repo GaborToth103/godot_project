@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ckqddiutvvxmd"
+path="res://.godot/imported/Archer_Red.aseprite-1e50d4c93e164645515d84ac5c086d64.res"
+
+[deps]
+
+source_file="res://assets/Tiny Swords/Tiny Swords/Factions/Knights/Troops/Archer/Red/Archer_Red.aseprite"
+dest_files=["res://.godot/imported/Archer_Red.aseprite-1e50d4c93e164645515d84ac5c086d64.res"]
+
+[params]
+

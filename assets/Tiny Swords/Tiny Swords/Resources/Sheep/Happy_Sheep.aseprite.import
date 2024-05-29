@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://gt3lbyngsx25"
+path="res://.godot/imported/Happy_Sheep.aseprite-1495bd8c2385b87512874c48cce0d55f.res"
+
+[deps]
+
+source_file="res://assets/Tiny Swords/Tiny Swords/Resources/Sheep/Happy_Sheep.aseprite"
+dest_files=["res://.godot/imported/Happy_Sheep.aseprite-1495bd8c2385b87512874c48cce0d55f.res"]
+
+[params]
+

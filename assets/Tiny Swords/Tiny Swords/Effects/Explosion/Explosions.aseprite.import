@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bl171e2wyg1jy"
+path="res://.godot/imported/Explosions.aseprite-c02210a8bebeb1a908c0ba8002144c9e.res"
+
+[deps]
+
+source_file="res://assets/Tiny Swords/Tiny Swords/Effects/Explosion/Explosions.aseprite"
+dest_files=["res://.godot/imported/Explosions.aseprite-c02210a8bebeb1a908c0ba8002144c9e.res"]
+
+[params]
+

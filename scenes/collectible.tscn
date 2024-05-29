@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccwoha0h3b6qu"]
+
+[ext_resource type="Texture2D" uid="uid://biemjjqm4t326" path="res://assets/Tiny Swords/Tiny Swords/Deco/01.png" id="1_jdt8r"]
+[ext_resource type="Script" path="res://scenes/collectible.gd" id="1_sugyb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvha2"]
+size = Vector2(17, 16)
+
+[node name="Collectible" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_sugyb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jdt8r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_vvha2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

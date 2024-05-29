@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bxpl7rm1d554y"
+path="res://.godot/imported/Foam.aseprite-fff866454c90a177662ebe26af8e44df.res"
+
+[deps]
+
+source_file="res://assets/Tiny Swords/Tiny Swords/Terrain/Water/Foam/Foam.aseprite"
+dest_files=["res://.godot/imported/Foam.aseprite-fff866454c90a177662ebe26af8e44df.res"]
+
+[params]
+

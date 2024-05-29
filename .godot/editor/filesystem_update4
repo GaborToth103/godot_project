@@ -1,0 +1,10 @@
+res://scenes/world.gd
+res://scenes/player.gd
+res://scenes/collectible.gd
+res://scenes/world.tscn
+res://scripts/DefaultMovementData.tres
+res://scenes/player.tscn
+res://scenes/spikes.tscn
+res://scenes/hazard_area.tscn
+res://scenes/collectible.tscn
+res://scripts/PlayerMovementData.gd

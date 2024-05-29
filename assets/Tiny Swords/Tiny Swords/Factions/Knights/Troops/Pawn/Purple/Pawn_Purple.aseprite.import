@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cpu7vjlwjjkvc"
+path="res://.godot/imported/Pawn_Purple.aseprite-4fd9ee8eaf410e413c45bf9bd9d33fe6.res"
+
+[deps]
+
+source_file="res://assets/Tiny Swords/Tiny Swords/Factions/Knights/Troops/Pawn/Purple/Pawn_Purple.aseprite"
+dest_files=["res://.godot/imported/Pawn_Purple.aseprite-4fd9ee8eaf410e413c45bf9bd9d33fe6.res"]
+
+[params]
+

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bafwdnde2qji2"]
+
+[ext_resource type="Texture2D" uid="uid://dwnj2oxmd2bhm" path="res://assets/Tiny Swords/Tiny Swords/Deco/15.png" id="1_gpncq"]
+[ext_resource type="PackedScene" uid="uid://dpdkkn7rh77dl" path="res://scenes/hazard_area.tscn" id="2_cgvrv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcdlx"]
+size = Vector2(10, 12)
+
+[node name="Spikes" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, -6)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_gpncq")
+
+[node name="HazardArea" parent="." instance=ExtResource("2_cgvrv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+position = Vector2(5, -6)
+shape = SubResource("RectangleShape2D_dcdlx")

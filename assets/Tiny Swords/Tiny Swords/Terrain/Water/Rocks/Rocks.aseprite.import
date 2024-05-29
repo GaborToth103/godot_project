@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dht7w8uo70j7n"
+path="res://.godot/imported/Rocks.aseprite-8a9cc34d794f3da9fd2181e639d1699d.res"
+
+[deps]
+
+source_file="res://assets/Tiny Swords/Tiny Swords/Terrain/Water/Rocks/Rocks.aseprite"
+dest_files=["res://.godot/imported/Rocks.aseprite-8a9cc34d794f3da9fd2181e639d1699d.res"]
+
+[params]
+
