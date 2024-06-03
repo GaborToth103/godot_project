@@ -1,23 +1,22 @@
-class_name  World
-extends Node2D
+class_name  MultiplayerMenu
+extends VBoxContainer
 
 var server_port: int = 124
 var server_address: String = "127.0.0.1"
 var peer = ENetMultiplayerPeer.new()
-@export var player_scene: PackedScene
 @export var player_id: int = 0
 	
 func _on_hotseat_pressed():
-	# buttons.queue_free()
-	add_player(-1)
-	add_player(1)
+	get_parent().add_player(1)
+	get_parent().add_player(-1)
+	queue_free()
 
 func _on_host_pressed():
-	# buttons.queue_free()
 	peer.create_server(server_port)
 	multiplayer.multiplayer_peer = peer
-	multiplayer.peer_connected.connect(add_player)
-	add_player()
+	multiplayer.peer_connected.connect(get_parent().add_player)
+	get_parent().add_player()
+	queue_free()
 
 func _on_join_pressed():
 	if not _is_valid_ip(server_address):
@@ -26,11 +25,7 @@ func _on_join_pressed():
 	# buttons.queue_free()
 	peer.create_client(server_address, server_port)
 	multiplayer.multiplayer_peer = peer
-
-func add_player(id: int = 1):
-	var player = player_scene.instantiate()
-	player.name = str(id)
-	call_deferred("add_child", player)
+	queue_free()
 
 func exit_game(id):
 	multiplayer.peer_disconnected.connect(del_player)

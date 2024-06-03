@@ -751,7 +751,7 @@ properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(0, -1)
 collision_layer = 2
 collision_mask = 5
@@ -759,11 +759,6 @@ floor_constant_speed = true
 floor_snap_length = 3.0
 script = ExtResource("1_k5gd6")
 movement_data = ExtResource("2_ru0mp")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -22.5)

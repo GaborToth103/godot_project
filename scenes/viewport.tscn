@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://fmr3vvfnu873"]
+
+[ext_resource type="PackedScene" uid="uid://d32ned202ke0m" path="res://scenes/world.tscn" id="1_6i7yv"]
+[ext_resource type="Script" path="res://scenes/viewport.gd" id="1_8p0kp"]
+[ext_resource type="Script" path="res://scenes/PlayerCamera.gd" id="2_5bpbl"]
+[ext_resource type="PackedScene" uid="uid://gquofr4lfqna" path="res://scenes/player.tscn" id="2_s0tsw"]
+[ext_resource type="PackedScene" uid="uid://bfx3c857glsrp" path="res://scenes/container_multiplayer.tscn" id="4_66o8c"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8p0kp")
+player_scene = ExtResource("2_s0tsw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 646.0
+offset_bottom = 360.0
+
+[node name="Container0" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Viewport" type="SubViewport" parent="HBoxContainer/Container0"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(316, 360)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="HBoxContainer/Container0/Viewport" groups=["view_cam"]]
+position_smoothing_speed = 2.0
+script = ExtResource("2_5bpbl")
+cam_index = 1
+
+[node name="World" parent="HBoxContainer/Container0/Viewport" instance=ExtResource("1_6i7yv")]
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+
+[node name="Container1" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Viewport" type="SubViewport" parent="HBoxContainer/Container1"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(316, 360)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="HBoxContainer/Container1/Viewport" groups=["view_cam"]]
+position_smoothing_speed = 2.0
+script = ExtResource("2_5bpbl")
+cam_index = -1
+
+[node name="Menu" parent="." instance=ExtResource("4_66o8c")]
+layout_mode = 1
+offset_left = 256.0
+offset_top = 51.0
+offset_right = -256.0
+offset_bottom = -172.0
+player_id = 0

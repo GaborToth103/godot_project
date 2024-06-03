@@ -4,11 +4,10 @@ extends CharacterBody2D
 #endregion
 
 #region Properties
-@export var player_index: int = 1 ## Player index for determining which player is which. 0 is default.
+@export var player_index: int = 1 ## Player index for determining which player is which. 1 is default.
 @export var movement_data: PlayerMovementData
 @onready var animated_sprite_2d = $AnimatedSprite2D2
 @onready var coyote_jump_timer = $CoyoteJumpTimer
-@onready var cam = $Camera2D
 @onready var startin_position = global_position
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -27,7 +26,6 @@ var input_dict: Dictionary = Dictionary()
 #endregion
 
 func _ready():
-	cam.enabled = is_multiplayer_authority()
 	position = Vector2(320, 180)
 
 func _enter_tree():
@@ -49,6 +47,7 @@ func handle_input(index) -> void:
 		input_dict["crouch"] = Input.is_action_pressed("crouch") or Input.is_joy_button_pressed(1, JOY_BUTTON_B)
 		input_dict["axis"] = Input.get_axis("move_left", "move_right") + Input.get_joy_axis(1, JOY_AXIS_LEFT_X)
 		input_dict["Attack"] = Input.is_action_pressed("attack1") or Input.is_joy_button_pressed(1, JOY_BUTTON_X)
+		
 func _physics_process(delta):
 	if not control_enabled: return
 	handle_input(player_index)
