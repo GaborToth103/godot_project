@@ -13,7 +13,7 @@ extends Control
 
 # TODO move child if players is in the reverse direction
 
-@export var player_scene: PackedScene
+var player_scene: PackedScene = preload("res://scenes/Characters/player.tscn")
 @export var split_distance: float = 155
 
 func resize_viewport(hide_secondary: bool):
@@ -30,13 +30,11 @@ func resize_viewport(hide_secondary: bool):
 		view1.size = Vector2(316, 360)
 
 func add_player(id: int = 1):
-	var player
-	if len(get_tree().get_nodes_in_group("player")) == 0:
-		player = player_scene.instantiate()
-	else: # TODO 
-		player = player_scene.instantiate()
+	var player = player_scene.instantiate()
 	player.name = str(id)
 	print(player.name)
+	if id != 1:
+		cam1.cam_index = id
 	world.call_deferred("add_child", player)
 
 func _ready():
@@ -51,5 +49,3 @@ func _process(_delta):
 	for cam: ViewCam in get_tree().get_nodes_in_group("view_cam"):
 		var target_player = cam.get_own_player()
 		cam.set_cam_position(center, target_player, split_distance)
-
-	

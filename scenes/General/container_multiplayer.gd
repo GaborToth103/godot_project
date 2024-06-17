@@ -1,30 +1,33 @@
 class_name  MultiplayerMenu
 extends VBoxContainer
 
-var server_port: int = 124
+@onready var vp: MyViewport = get_parent().get_node("Viewport")
+@onready var ui: MyUserInterface = get_parent().get_node("UserInterface")
+@export var server_port: int = 124
 var server_address: String = "127.0.0.1"
 var peer = ENetMultiplayerPeer.new()
-@export var player_id: int = 0
 	
 func _on_hotseat_pressed():
-	get_parent().add_player(1)
-	get_parent().add_player(-1)
+	FunnyFunction.add_player(1, vp.world, vp.cam1)
+	FunnyFunction.add_player(-1, vp.world, vp.cam1)
+	ui.game_start_event()
 	queue_free()
 
 func _on_host_pressed():
 	peer.create_server(server_port)
 	multiplayer.multiplayer_peer = peer
-	multiplayer.peer_connected.connect(get_parent().add_player)
-	get_parent().add_player()
+	multiplayer.peer_connected.connect(vp.add_player)
+	FunnyFunction.add_player(1, vp.world, vp.cam1)
+	ui.game_start_event()
 	queue_free()
 
 func _on_join_pressed():
 	if not _is_valid_ip(server_address):
 		print(server_address, "is not a valid IP address!")
 		return
-	# buttons.queue_free()
 	peer.create_client(server_address, server_port)
 	multiplayer.multiplayer_peer = peer
+	ui.game_start_event()
 	queue_free()
 
 func exit_game(id):

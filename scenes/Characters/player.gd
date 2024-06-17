@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d = $AnimatedSprite2D2
 @onready var coyote_jump_timer = $CoyoteJumpTimer
 @onready var startin_position = global_position
+@onready var pd: PlayerData = $PlayerData
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dash_time: float = 0.2  # Duration of the dash in seconds
@@ -47,10 +48,15 @@ func handle_input(index) -> void:
 		input_dict["crouch"] = Input.is_action_pressed("crouch") or Input.is_joy_button_pressed(1, JOY_BUTTON_B)
 		input_dict["axis"] = Input.get_axis("move_left", "move_right") + Input.get_joy_axis(1, JOY_AXIS_LEFT_X)
 		input_dict["Attack"] = Input.is_action_pressed("attack1") or Input.is_joy_button_pressed(1, JOY_BUTTON_X)
-		
+
+func _process(_delta):
+	pass
+
 func _physics_process(delta):
 	if not control_enabled: return
 	handle_input(player_index)
+	update_animations(input_dict["axis"])
+	if pd.is_dead(): return
 	apply_gravity(delta)
 	handle_dash(delta)
 	handle_wall_jump()
@@ -59,7 +65,6 @@ func _physics_process(delta):
 	handle_air_acceleration(input_dict["axis"], delta)
 	apply_friction(input_dict["axis"], delta)
 	apply_air_resistance(input_dict["axis"], delta)
-	update_animations(input_dict["axis"])
 	just_wall_jumped = false
 	var was_on_floor = is_on_floor()
 	move_and_slide()
@@ -144,5 +149,12 @@ func update_animations(input_axis):
 	else:
 		animated_sprite_2d.play("Idle")
 
-func _on_hazard_detector_area_entered(area:Area2D):
+func _on_hazard_detector_area_entered(_area:Area2D):
+	# TODO hazard detection, now just teleports to the starting area 
 	global_position = startin_position
+
+
+func _on_hit_detector_area_entered(area:Area2D):
+	var target = area.get_parent()
+	if is_instance_of(target, Player):
+		pd.increase_health(-1)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bfx3c857glsrp"]
 
-[ext_resource type="Script" path="res://scenes/container_multiplayer.gd" id="1_7bn2w"]
+[ext_resource type="Script" path="res://scenes/General/container_multiplayer.gd" id="1_7bn2w"]
 
 [node name="ContainerMultiplayer" type="VBoxContainer"]
 anchors_preset = 15

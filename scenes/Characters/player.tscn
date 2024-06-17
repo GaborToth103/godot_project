@@ -1,14 +1,20 @@
-[gd_scene load_steps=92 format=3 uid="uid://gquofr4lfqna"]
+[gd_scene load_steps=98 format=3 uid="uid://gquofr4lfqna"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_k5gd6"]
+[ext_resource type="Script" path="res://scenes/Characters/player.gd" id="1_k5gd6"]
 [ext_resource type="Resource" uid="uid://chg5d3cyp0olv" path="res://scripts/DefaultMovementData.tres" id="2_ru0mp"]
 [ext_resource type="Texture2D" uid="uid://157v0qmdhvcq" path="res://assets/prototype character-Sheet.png" id="4_55h61"]
+[ext_resource type="Script" path="res://scripts/player_data.gd" id="4_hrvtm"]
+[ext_resource type="Script" path="res://scripts/player_state/state_machine.gd" id="5_3c684"]
+[ext_resource type="Script" path="res://scripts/player_state/idle.gd" id="6_o1kbf"]
+[ext_resource type="Script" path="res://scripts/player_state/jump.gd" id="7_wdrhg"]
+[ext_resource type="Script" path="res://scripts/player_state/jump_end.gd" id="8_quq3s"]
+[ext_resource type="Script" path="res://scripts/player_state/jump_start.gd" id="9_tvjct"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_blq6r"]
 size = Vector2(20, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjmsn"]
-size = Vector2(16, 45)
+size = Vector2(21.75, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pactm"]
 atlas = ExtResource("4_55h61")
@@ -771,8 +777,15 @@ one_shot = true
 [node name="HazardDetector" type="Area2D" parent="."]
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardDetector"]
+[node name="Hurtbox" type="CollisionShape2D" parent="HazardDetector"]
 position = Vector2(0, -21.5)
+shape = SubResource("RectangleShape2D_bjmsn")
+
+[node name="HitDetector" type="Area2D" parent="."]
+collision_mask = 7
+
+[node name="Hitbox" type="CollisionShape2D" parent="HitDetector"]
+position = Vector2(25, -22)
 shape = SubResource("RectangleShape2D_bjmsn")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
@@ -784,4 +797,27 @@ frame_progress = 0.468441
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_r8hfh")
 
+[node name="PlayerData" type="Node" parent="."]
+script = ExtResource("4_hrvtm")
+
+[node name="MovementStateMachine" type="Node" parent="." node_paths=PackedStringArray("target_character", "initial_state")]
+script = ExtResource("5_3c684")
+target_character = NodePath("..")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="MovementStateMachine"]
+script = ExtResource("6_o1kbf")
+
+[node name="Move" type="Node" parent="MovementStateMachine"]
+
+[node name="Jump" type="Node" parent="MovementStateMachine"]
+script = ExtResource("7_wdrhg")
+
+[node name="Jump_end" type="Node" parent="MovementStateMachine"]
+script = ExtResource("8_quq3s")
+
+[node name="jump_start" type="Node" parent="MovementStateMachine"]
+script = ExtResource("9_tvjct")
+
 [connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
+[connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]

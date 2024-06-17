@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://d32ned202ke0m"]
 
-[ext_resource type="Script" path="res://scenes/world.gd" id="1_4gahb"]
+[ext_resource type="Script" path="res://scenes/General/world.gd" id="1_4gahb"]
 [ext_resource type="Texture2D" uid="uid://be43ly0wqq7ho" path="res://assets/prototype tile.png" id="2_7s3x4"]
-[ext_resource type="PackedScene" uid="uid://gquofr4lfqna" path="res://scenes/player.tscn" id="2_ouff1"]
+[ext_resource type="PackedScene" uid="uid://gquofr4lfqna" path="res://scenes/Characters/player.tscn" id="2_ouff1"]
 [ext_resource type="Texture2D" uid="uid://c3asusufeqt44" path="res://assets/Tiny Swords/Tiny Swords/Terrain/Ground/Tilemap_Flat.png" id="4_8n335"]
 [ext_resource type="PackedScene" uid="uid://ccwoha0h3b6qu" path="res://scenes/collectible.tscn" id="6_4arad"]
 
