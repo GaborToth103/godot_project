@@ -9,6 +9,7 @@ extends Control
 @onready var timer_end: Timer = $Timers/GameEnd
 @onready var health_p1: ProgressBar = $PanelContainer/Panel/HBoxContainer/HealthBar_1
 @onready var health_p2: ProgressBar = $PanelContainer/Panel/HBoxContainer/HealthBar_2
+@onready var level_completed: ColorRect = $CanvasLayer/LevelCompleted
 
 enum Outcome{P1, P2, TIE}
 enum GameStance{INIT, READY, FIGHT, GAME, END}
@@ -17,6 +18,16 @@ var game_state: GameStance = GameStance.INIT
 
 func _ready():
 	announcement_label.visible = false
+	Events_name.level_completed.connect(show_level_completed)
+	Events_name.next_level.connect(hide_level_completed)
+
+func show_level_completed():
+	level_completed.show()
+
+func hide_level_completed():
+	level_completed.hide()
+
+
 
 func _process(_delta):
 	time_label.text = str(int(timer_end.time_left))

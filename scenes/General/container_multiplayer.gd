@@ -1,12 +1,23 @@
-class_name  MultiplayerMenu
-extends VBoxContainer
+class_name  MultiplayerMenu extends VBoxContainer
 
 @onready var vp: MyViewport = get_parent().get_node("Viewport")
 @onready var ui: MyUserInterface = get_parent().get_node("UserInterface")
 @export var server_port: int = 124
 var server_address: String = "127.0.0.1"
 var peer = ENetMultiplayerPeer.new()
-	
+
+func _ready():
+	Events_name.next_level.connect(spawn_player)
+	Events_name.level_completed.connect(show_level_completed)
+
+func show_level_completed():
+	assert(false)
+
+func spawn_player():
+	assert(false)
+	await get_tree().create_timer(1).timeout
+	FunnyFunction.add_player(1, vp.world, vp.cam1)
+
 func _on_hotseat_pressed():
 	FunnyFunction.add_player(1, vp.world, vp.cam1)
 	FunnyFunction.add_player(-1, vp.world, vp.cam1)

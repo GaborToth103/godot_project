@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://gquofr4lfqna"]
+[gd_scene load_steps=102 format=3 uid="uid://gquofr4lfqna"]
 
 [ext_resource type="Script" path="res://scenes/Characters/player.gd" id="1_k5gd6"]
 [ext_resource type="Resource" uid="uid://chg5d3cyp0olv" path="res://scripts/DefaultMovementData.tres" id="2_ru0mp"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" path="res://scripts/player_state/jump.gd" id="7_wdrhg"]
 [ext_resource type="Script" path="res://scripts/player_state/jump_end.gd" id="8_quq3s"]
 [ext_resource type="Script" path="res://scripts/player_state/jump_start.gd" id="9_tvjct"]
+[ext_resource type="Script" path="res://scripts/player_state/crouch.gd" id="10_vgw6j"]
+[ext_resource type="Script" path="res://scripts/player_state/Dash.gd" id="11_xsyxq"]
+[ext_resource type="Script" path="res://scripts/player_state/WallSlide.gd" id="12_6j5cs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_blq6r"]
 size = Vector2(20, 47)
@@ -232,10 +235,6 @@ region = Rect2(0, 80, 80, 80)
 atlas = ExtResource("4_55h61")
 region = Rect2(80, 80, 80, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7m87c"]
-atlas = ExtResource("4_55h61")
-region = Rect2(0, 400, 80, 80)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_kynbn"]
 atlas = ExtResource("4_55h61")
 region = Rect2(0, 160, 80, 80)
@@ -291,6 +290,14 @@ region = Rect2(0, 80, 80, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gyx8g"]
 atlas = ExtResource("4_55h61")
 region = Rect2(80, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeopm"]
+atlas = ExtResource("4_55h61")
+region = Rect2(80, 1120, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m87c"]
+atlas = ExtResource("4_55h61")
+region = Rect2(0, 400, 80, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jf55q"]
 atlas = ExtResource("4_55h61")
@@ -618,14 +625,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7m87c")
-}],
-"loop": true,
-"name": &"JumpPre",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_kynbn")
 }, {
 "duration": 1.0,
@@ -674,6 +673,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"MovePre",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeopm")
+}],
+"loop": true,
+"name": &"WallSlide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m87c")
+}],
+"loop": true,
+"name": &"jump_start",
 "speed": 10.0
 }, {
 "frames": [{
@@ -763,6 +778,7 @@ collision_layer = 2
 collision_mask = 5
 floor_constant_speed = true
 floor_snap_length = 3.0
+safe_margin = 0.1
 script = ExtResource("1_k5gd6")
 movement_data = ExtResource("2_ru0mp")
 
@@ -791,8 +807,7 @@ shape = SubResource("RectangleShape2D_bjmsn")
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -23)
 sprite_frames = SubResource("SpriteFrames_8qmsv")
-animation = &"Attack"
-frame_progress = 0.468441
+animation = &"WallSlide"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_r8hfh")
@@ -818,6 +833,15 @@ script = ExtResource("8_quq3s")
 
 [node name="jump_start" type="Node" parent="MovementStateMachine"]
 script = ExtResource("9_tvjct")
+
+[node name="Crouch" type="Node" parent="MovementStateMachine"]
+script = ExtResource("10_vgw6j")
+
+[node name="Dash" type="Node" parent="MovementStateMachine"]
+script = ExtResource("11_xsyxq")
+
+[node name="WallSlide" type="Node" parent="MovementStateMachine"]
+script = ExtResource("12_6j5cs")
 
 [connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
 [connection signal="area_entered" from="HitDetector" to="." method="_on_hit_detector_area_entered"]

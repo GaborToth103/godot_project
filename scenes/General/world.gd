@@ -6,13 +6,22 @@ var server_address: String = "127.0.0.1"
 var peer = ENetMultiplayerPeer.new()
 @export var player_scene: PackedScene
 @export var player_id: int = 0
-	
+@export var next_level: PackedScene
+
+func _ready():
+	Events_name.next_level.connect(change_level)
+
+func change_level():
+	get_tree().change_scene_to_packed(next_level)
+
 func _on_hotseat_pressed():
+	assert(false)
 	# buttons.queue_free()
 	add_player(-1)
 	add_player(1)
 
 func _on_host_pressed():
+	assert(false)
 	# buttons.queue_free()
 	peer.create_server(server_port)
 	multiplayer.multiplayer_peer = peer
@@ -20,6 +29,7 @@ func _on_host_pressed():
 	add_player()
 
 func _on_join_pressed():
+	assert(false)
 	if not _is_valid_ip(server_address):
 		print(server_address, "is not a valid IP address!")
 		return
@@ -28,6 +38,7 @@ func _on_join_pressed():
 	multiplayer.multiplayer_peer = peer
 
 func add_player(id: int = 1):
+	assert(false)
 	var player = player_scene.instantiate()
 	player.name = str(id)
 	call_deferred("add_child", player)

@@ -1,4 +1,13 @@
-class_name FunnyFunction
+class_name Events extends Node
+
+signal level_completed
+signal next_level
+signal spawn_player
+
+func _ready():
+	return
+	assert(false)
+
 static var player_scene: PackedScene = preload("res://scenes/CharacterS/player.tscn") ## Player scene to load
 static var target_node_s = null
 static var cam_node_s = null

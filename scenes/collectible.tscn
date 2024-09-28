@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvha2"]
 size = Vector2(17, 16)
 
-[node name="Collectible" type="Area2D"]
+[node name="Collectible" type="Area2D" groups=["Collectibles"]]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_sugyb")

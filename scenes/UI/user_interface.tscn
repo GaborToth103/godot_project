@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://6klfd7ei6yi6"]
+[gd_scene load_steps=5 format=3 uid="uid://6klfd7ei6yi6"]
 
 [ext_resource type="Script" path="res://scenes/UI/user_interface.gd" id="1_2demh"]
+[ext_resource type="PackedScene" uid="uid://cskrw3gnt8rgi" path="res://scenes/UI/level_completed.tscn" id="2_76df5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncq7c"]
 bg_color = Color(1, 0, 0, 1)
@@ -93,6 +94,11 @@ one_shot = true
 [node name="GameEnd" type="Timer" parent="Timers"]
 wait_time = 99.0
 one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelCompleted" parent="CanvasLayer" instance=ExtResource("2_76df5")]
+visible = false
 
 [connection signal="timeout" from="Timers/Ready" to="." method="_on_ready_timeout"]
 [connection signal="timeout" from="Timers/Fight" to="." method="_on_fight_timeout"]

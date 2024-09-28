@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://g47l6xabw3s8"]
+
+[ext_resource type="PackedScene" uid="uid://cck1yuaufom6i" path="res://scenes/General/world_template.tscn" id="1_a1opf"]
+
+[node name="Level01" instance=ExtResource("1_a1opf")]
+position = Vector2(-2, 0)
